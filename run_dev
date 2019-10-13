@@ -1,2 +1,2 @@
 #!/bin/sh
-mvn clean compile exec:exec
+mvn -q clean compile act:run 

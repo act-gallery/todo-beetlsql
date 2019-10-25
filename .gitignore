@@ -18,3 +18,4 @@ git.log
 *.log
 *.db
 *.sql
+*.pid

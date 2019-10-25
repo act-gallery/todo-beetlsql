@@ -21,10 +21,11 @@ import javax.inject.Inject;
 public class Todo {
 
     @Inject
-    private TodoItem.Mapper mapper;
+    private TodoItemMapper mapper;
 
     @GetAction
     public void home() {}
+
 
     @GetAction("/list")
     public Iterable<TodoItem> list(String q) {

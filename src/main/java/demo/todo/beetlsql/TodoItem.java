@@ -35,8 +35,5 @@ public class TodoItem  {
 		this.desc = desc;
 	}
 
-	public interface Mapper extends BaseMapper<TodoItem> {
-	}
-
 
 }

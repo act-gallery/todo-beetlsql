@@ -3,6 +3,8 @@ package demo.todo.beetlsql;
 import static act.controller.Controller.Util.notFoundIfNull;
 
 import act.Act;
+import act.db.DbBind;
+import act.db.beetlsql.BeetlSqlDao;
 import act.db.beetlsql.BeetlSqlTransactional;
 import act.db.sql.tx.Transactional;
 import act.job.Every;
@@ -12,6 +14,7 @@ import org.osgl.util.Keyword;
 import org.osgl.util.S;
 
 import javax.inject.Inject;
+import java.io.File;
 
 /**
  * A Simple Todo application controller
@@ -21,15 +24,19 @@ import javax.inject.Inject;
 public class Todo {
 
     @Inject
-    private TodoItem.Mapper mapper;
+    private BeetlSqlDao<Integer, TodoItem> dao;
 
     @GetAction
     public void home() {}
 
+    @GetAction("file")
+    public static File file() {
+        return new File("target/classes/demo/todo/beetlsql/Todo.class");
+    }
+
     @GetAction("/list")
     public Iterable<TodoItem> list(String q) {
-    		// mapper.all();
-        return mapper.all();
+        return dao.findAll();
     }
 
     @PostAction("/list")
@@ -37,37 +44,25 @@ public class Todo {
     public void post(String desc) {
         TodoItem item = new TodoItem();
         item.setDesc(desc);
-        mapper.insert(item);
+        dao.save(item);
     }
 
     @DeleteAction("/list/{id}")
     public void delete(int id) {
-        TodoItem item = mapper.single(id);
-        mapper.deleteById(id);
+        dao.deleteById(id);
     }
 
-    @PutAction("/list/{id}")
-    public void update(int id, String desc) {
-        TodoItem item = mapper.single(id);
+    @PutAction("/list/{item}")
+    public void update(@DbBind TodoItem item, String desc) {
         notFoundIfNull(item);
         item.setDesc(desc);
-        mapper.updateById(item);
+        dao.save(item);
     }
 
-    @PostAction("/create")
-    @ResponseContentType(H.MediaType.JSON)
-    public TodoItem testCreate(TodoItem todo) {
-        return todo;
-    }
-
-    @GetAction("/list/{id}")
-    public TodoItem showItem(long id) {
-        TodoItem item = mapper.single(id);
-        notFoundIfNull(item);
+    @GetAction("/list/{item}")
+    public TodoItem showItem(@DbBind TodoItem item) {
         return item;
     }
-    
-
     
     public static void main(String[] args) throws Exception {
         Act.start("TODO-BeetlSql");

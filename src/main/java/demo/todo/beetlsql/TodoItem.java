@@ -1,15 +1,15 @@
 package demo.todo.beetlsql;
 
 
+import org.beetl.sql.core.annotatoin.AssignID;
 import org.beetl.sql.core.mapper.BaseMapper;
 
 import javax.persistence.Entity;
-import javax.persistence.Id;
 
 @Entity
 public class TodoItem  {
 
-	@Id
+	@AssignID
     private int id;
 
     private String desc;

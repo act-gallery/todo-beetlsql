@@ -42,13 +42,12 @@
     <dependency>
       <groupId>org.actframework</groupId>
       <artifactId>act</artifactId>
-      <version>1.8.29-SNAPSHOT</version>
+      <version>1.8.29</version>
     </dependency>
 
     <dependency>
       <groupId>org.actframework</groupId>
       <artifactId>act-beetlsql</artifactId>
-      <version>1.8.0-SNAPSHOT</version>
     </dependency>
 
     <dependency>

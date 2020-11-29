@@ -25,7 +25,6 @@ public class TodoItem  {
 		this.id = id;
 	}
 
-
 	public String getDesc() {
 		return desc;
 	}

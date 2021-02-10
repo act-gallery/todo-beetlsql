@@ -4,10 +4,11 @@ import static act.controller.Controller.Util.notFoundIfNull;
 
 import act.Act;
 import act.db.DbBind;
-import act.db.beetlsql.BeetlSqlDao;
-import act.db.beetlsql.BeetlSqlTransactional;
+
 import act.db.sql.tx.Transactional;
 import act.job.Every;
+import org.beetl.sql.act.BeetlSqlDao;
+import org.beetl.sql.act.BeetlSqlTransactional;
 import org.osgl.http.H;
 import org.osgl.mvc.annotation.*;
 import org.osgl.util.Keyword;

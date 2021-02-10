@@ -1,7 +1,8 @@
 package demo.todo.beetlsql;
 
 
-import org.beetl.sql.core.mapper.BaseMapper;
+
+import org.beetl.sql.mapper.BaseMapper;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
